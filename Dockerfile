@@ -40,6 +40,10 @@ RUN apk add --no-cache bash curl jq docker \
  && rm glibc-${GLIBC_VERSION}.apk
 
 COPY kafka-2.0.0-connector-kinetica-7.0.1.3-jar-with-dependencies.jar ${KAFKA_HOME}/libs/kafka-2.0.0-connector-kinetica-7.0.1.3-jar-with-dependencies.jar
+COPY connect-standalone-sink.properties  ${KAFKA_HOME}/config/connect-standalone-sink.properties
+COPY connect-standalone-sink.properties  ${KAFKA_HOME}/config/connect-standalone-source.properties
+COPY sink.properties  ${KAFKA_HOME}/config/sink.properties
+COPY source.properties  ${KAFKA_HOME}/config/source.properties
 
 COPY overrides /opt/overrides
 
