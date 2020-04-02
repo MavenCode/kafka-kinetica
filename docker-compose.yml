@@ -7,7 +7,7 @@ services:
       - "2181:2181"
     networks:
       gpudb-net:
-        ipv4_address: 173.20.0.8
+        ipv4_address: 172.20.0.8
   kafka: #build local docker image
     build:
       context: .
@@ -17,11 +17,11 @@ services:
     depends_on:
       - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 173.20.0.9
+      KAFKA_ADVERTISED_HOST_NAME: 172.20.0.9
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     networks:
       gpudb-net:
-        ipv4_address: 173.20.0.9
+        ipv4_address: 172.20.0.9
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   kagent:
@@ -44,7 +44,7 @@ services:
     tty: true
     networks:
       gpudb-net:
-        ipv4_address: 173.20.0.10
+        ipv4_address: 172.20.0.10
   gpudb-worker:
     build:
       context: .
@@ -59,14 +59,14 @@ services:
     tty: true
     networks:
       gpudb-net:
-        ipv4_address: 173.20.0.20
+        ipv4_address: 172.20.0.20
 
 networks:
   gpudb-net:
     ipam:
       driver: default
       config:
-        - subnet: 173.20.0.0/16
+        - subnet: 172.20.0.0/16
 
 secrets:  
   host_ssh_key:
