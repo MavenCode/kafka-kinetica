@@ -51,4 +51,4 @@ VOLUME ["/kafka"]
 
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]
-CMD ["connect-standalone.sh", "${KAFKA_HOME}/config/connect-standalone-sink.properties", "${KAFKA_HOME}/config/sink.properties"]
+CMD ["connect-standalone.sh", "/opt/kafka/config/connect-standalone-sink.properties", "/opt/kafka/config/sink.properties"]
