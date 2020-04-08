@@ -36,3 +36,6 @@ Minor Test messages
 * https://github.com/kineticadb/kinetica-connector-kafka
 
 * test to see if Kafka is running `netstat -an|grep 9092`
+
+
+> 8iKdUZ6YY233-kgX7yJHrEZ8w-kLQx4Utq+rOr-SZeQRHlO0OOd-p4qmH7m6gFXDMP4A8Q5P9+5lk9CxJD4g

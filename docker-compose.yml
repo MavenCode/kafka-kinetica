@@ -25,7 +25,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   kagent:
-    image: kinetica/kagent:latest
+    image: kinetica/kagent:7.0.11.8.20200310164820.ga
     ports:
       - "18081:8081"
     networks:
@@ -34,7 +34,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ubuntu
-    image: donstewart/ubuntu:18.04-ssh
     expose:
       - "22"
     ports:
@@ -49,7 +48,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ubuntu
-    image: donstewart/ubuntu:18.04-ssh
     expose:
       - "22"
     ports:
