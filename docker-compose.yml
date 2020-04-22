@@ -17,7 +17,9 @@ services:
     depends_on:
       - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 172.20.0.9
+      KAFKA_CREATE_TOPICS: "ratingsdemo:1:1"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     networks:
       gpudb-net:
@@ -25,7 +27,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   kagent:
-    image: kinetica/kagent:7.0.11.8.20200310164820.ga
+    image: kinetica/kagent:latest
     ports:
       - "18081:8081"
     networks:

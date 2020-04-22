@@ -27,7 +27,7 @@ ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
 COPY download-kafka.sh start-kafka.sh broker-list.sh create-topics.sh versions.sh /tmp/
 
-RUN apk add --no-cache bash curl jq docker \
+RUN apk add --no-cache bash curl jq docker python3 \
  && chmod a+x /tmp/*.sh \
  && mv /tmp/start-kafka.sh /tmp/broker-list.sh /tmp/create-topics.sh /tmp/versions.sh /usr/bin \
  && sync && /tmp/download-kafka.sh \
@@ -42,13 +42,15 @@ RUN apk add --no-cache bash curl jq docker \
 COPY kafka-2.0.0-connector-kinetica-7.0.1.3-jar-with-dependencies.jar ${KAFKA_HOME}/libs/kafka-2.0.0-connector-kinetica-7.0.1.3-jar-with-dependencies.jar
 COPY connect-standalone-sink.properties  ${KAFKA_HOME}/config/connect-standalone-sink.properties
 COPY connect-standalone-source.properties  ${KAFKA_HOME}/config/connect-standalone-source.properties
+
 COPY sink.properties  ${KAFKA_HOME}/config/sink.properties
 COPY source.properties  ${KAFKA_HOME}/config/source.properties
 
 COPY overrides /opt/overrides
 
+COPY demo /opt/demo
+
 VOLUME ["/kafka"]
 
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]
-#CMD ["connect-standalone.sh", "/opt/kafka/config/connect-standalone-sink.properties", "/opt/kafka/config/sink.properties"]

@@ -147,3 +147,6 @@ if [[ -n "$CUSTOM_INIT_SCRIPT" ]] ; then
 fi
 
 exec "$KAFKA_HOME/bin/kafka-server-start.sh" "$KAFKA_HOME/config/server.properties"
+
+exec "$KAFKA_HOME/bin/connect-standalone.sh"  "$KAFKA_HOME/config/connect-standalone-sink.properties" "$KAFKA_HOME/config/sink.properties"
+

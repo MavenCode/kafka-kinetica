@@ -31,11 +31,16 @@ Minor Test messages
 ===================
 `bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1  --topic Tweets.KafkaConnectorTest0`
 
-{ "created_at": "Wed Oct 10 20:19:24 +0000 2018", "id": 25, "text": "Hello World, Testing Kinetica Abi!" }
 
 * https://github.com/kineticadb/kinetica-connector-kafka
 
 * test to see if Kafka is running `netstat -an|grep 9092`
 
+> bin/connect-standalone.sh config/connect-standalone-sink.properties config/sink.properties
 
-> 8iKdUZ6YY233-kgX7yJHrEZ8w-kLQx4Utq+rOr-SZeQRHlO0OOd-p4qmH7m6gFXDMP4A8Q5P9+5lk9CxJD4g
+
+
+$KAFKA_HOME/bin/connect-standalone.sh  "$KAFKA_HOME/config/connect-standalone-sink.properties" "$KAFKA_HOME/config/sink.properties"
+
+
+python cvs_json.py | cat test_data.json | bin/kafka-console-producer.sh --broker-list localhost:9092 --topic demo.ratingsdemo
