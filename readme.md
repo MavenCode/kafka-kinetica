@@ -1,46 +1,21 @@
+#kineticaDB system Setup
+=======================
+`cd kinetica-component` folder
+0. docker-compose down & docker system prune -a
+1. docker-compose build
+2. docker-compose up
 
 
-Setup Instructions
-==================
+#Setup the Kafka Client {Download Kafka from https://www.apache.org/dyn/closer.cgi?path=/kafka/2.4.1/kafka_2.12-2.4.1.tgz =rename=> kafka-client}
+=======================
 
-0. git clone this repo
-
-1. cp the kinecta connector jar generated from your `mvn clean package` of 
-   `https://github.com/kineticadb/kinetica-connector-kafka`  inside this directory
-
-2. do `docker-compose up -d` to start the kafka, zookeeper, kagent, gpudb-head, gpudb-worker
-
-3. to stop do `docker-compose down` to stop the kafka, zookeeper, kagent, gpudb-head, gpudb-worker
+0. cp `connect-standalone-sink.properties` and `sink.properties` from `kinetica-component` into `kafka-client/config` folder
+1. cp `kafka-2.0.0-connector-kinetica-7.0.1.3-jar-with-dependencies.jar`  from `kinetica-component` into `kafka-client/lib` folder
+2. `cd kafka-client` folder
+3. run `bin/connect-standalone.sh config/connect-standalone-sink.properties config/sink.properties`
 
 
-Quick Kafka Debugging Steps
-============================
-1. Create Topic on Kafka:
-`bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic <TopicName>` 
-
-for sanity sake do `bin/kafka-topics.sh --list --bootstrap-server localhost:9092` to make sure Topic was created
-
-2. Post Test Message to the Topic in JSON format
-`bin/kafka-console-producer.sh --broker-list localhost:9092 --topic <TopicName>`  
-
-3. Consume Message from the Topic in JSON format
-`bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <TopicName> --from-beginning`
-
-
-Minor Test messages
-===================
-`bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1  --topic Tweets.KafkaConnectorTest0`
-
-
-* https://github.com/kineticadb/kinetica-connector-kafka
-
-* test to see if Kafka is running `netstat -an|grep 9092`
-
-> bin/connect-standalone.sh config/connect-standalone-sink.properties config/sink.properties
-
-
-
-$KAFKA_HOME/bin/connect-standalone.sh  "$KAFKA_HOME/config/connect-standalone-sink.properties" "$KAFKA_HOME/config/sink.properties"
-
-
-python cvs_json.py | cat test_data.json | bin/kafka-console-producer.sh --broker-list localhost:9092 --topic demo.ratingsdemo
+Assuming the Kinetica GPUDB is running already and you have you ratings tables created?
+=====================
+0. `cd demo` folder
+1. run `python stream_ratings.py`

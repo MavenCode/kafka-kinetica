@@ -48,9 +48,12 @@ COPY source.properties  ${KAFKA_HOME}/config/source.properties
 
 COPY overrides /opt/overrides
 
-COPY demo /opt/demo
+#COPY demo /opt/demo
 
 VOLUME ["/kafka"]
 
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]
+
+# used to run the connector source
+#CMD ["/opt/kafka/bin/connect-standalone.sh", "/opt/kafka/config/connect-standalone-sink.properties", "/opt/kafka/config/sink.properties"]
