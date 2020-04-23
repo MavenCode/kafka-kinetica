@@ -19,4 +19,5 @@
 ### Assuming the Kinetica GPUDB is running already and you have you ratings tables created? (ZSH Console 3)
 
 0. `cd demo` folder
-1. run `python stream_ratings.py`
+1. `pip install kafka-python`
+2. run `python stream_ratings.py`
