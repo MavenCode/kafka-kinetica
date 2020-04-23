@@ -1,6 +1,7 @@
 ### KineticaDB system Setup
 
 `cd kinetica-component` folder
+
 0. docker-compose down & docker system prune -a
 1. docker-compose build
 2. docker-compose up
