@@ -20,4 +20,5 @@
 
 0. `cd demo` folder
 1. `pip install kafka-python`
+2.  add the `ratings_with_headers_20m.csv` to the `demo` folder
 2. run `python stream_ratings.py`
